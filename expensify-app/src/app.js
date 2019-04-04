@@ -15,25 +15,36 @@ import {setTextFilter} from './actions/filters';
 import getVisibleExpenses from './selectors/expenses'
 
 
-//addExpenses -> water bill
-//addexpenses -> gas bill
-//settextfilter -> bill (water)
-//getvisibleexpenses -> print visibleones to screen
+import {Provider} from 'react-redux';
 
-const store = configureStore();
+const myStore = configureStore();
 
 
 
-store.dispatch(addExpense({ description: 'water bill', amount: 100, createdAt:-21000}));
-store.dispatch(addExpense({ description: 'electric bill', amount: 500, createdAt:-1000}));
+myStore.dispatch(addExpense({ description: 'water bill', amount: 100, createdAt:-21000}));
+myStore.dispatch(addExpense({ description: 'electric bill', amount: 4500, createdAt:-1000}));
 
-store.dispatch(setTextFilter('water'));
+myStore.dispatch(setTextFilter('water'));
+
+setTimeout(() => {
+    myStore.dispatch(setTextFilter('bill'))
+}, 3000);
 
 
-let state = store.getState();
+let state = myStore.getState();
 
 const filteredExpenses = getVisibleExpenses(state.expenses, state.filters);
 
 console.log(filteredExpenses);
 
-ReactDOM.render(<AppRouter /> ,document.getElementById('app'))
+const jsx =(
+    <Provider store={myStore}>
+        <AppRouter />
+    </Provider>
+    
+
+
+);
+
+
+ReactDOM.render(jsx ,document.getElementById('app'))
