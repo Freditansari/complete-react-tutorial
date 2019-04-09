@@ -21,9 +21,9 @@ const myStore = configureStore();
 
 
 
-myStore.dispatch(addExpense({ description: 'water bill', amount: 100, createdAt:-21000}));
-myStore.dispatch(addExpense({ description: 'electric bill', amount: 4500, createdAt:-1000}));
-
+myStore.dispatch(addExpense({ description: 'water bill', amount: 100, createdAt:2500}));
+myStore.dispatch(addExpense({ description: 'electric bill', amount: 4500, createdAt:1000}));
+myStore.dispatch(addExpense({ description: 'rent', amount: 195000, createdAt:500}));
 myStore.dispatch(setTextFilter('water'));
 
 setTimeout(() => {
